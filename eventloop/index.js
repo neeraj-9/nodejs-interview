@@ -19,3 +19,18 @@ There are 6 phases in event loop execution
 - check: callbacks scheduled by setImmediate are executed during this phase
 - close callbacks: cleanup, garbage collection etc is done in this phase. Ex. closing socket connection.
 */
+
+const initGame = () => {
+    console.log('Game has started!')
+}
+
+//to put CBs in microQueue
+process.nextTick(initGame)
+console.log('Console log 1')
+
+//to put CBs in promise queue
+Promise.resolve().then(() => {
+    console.log('Player created!!')
+})
+
+console.log('Console log 2')
